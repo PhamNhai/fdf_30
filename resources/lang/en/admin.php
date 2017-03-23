@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'Logout' => 'Logout',
+    'Settings' => 'Settings',
+    'User-Profile' => 'User Profile',
+    'Admin' => 'Admin',
+    'Dashboard' => 'Dashboard',
+    'Admin-Manager' => 'Admin-Manager', 
+    'Category' => 'Category',
+    'List-Category' => 'List Category', 
+    'Add-Category' => 'Add Category',
+    'Product' => 'Product', 
+    'List-Product'=>  'List Product',
+    'Add-Product' => 'Add Product',
+    'User' => 'User', 
+    'List-User' => 'List User', 
+    'Add-User'  => 'Add User',
+    'Search' => 'Search',
+    'Type' => 'Type',
+    'List-Type' => 'List Type', 
+    'Add-Type' => 'Add Type',
+    'Order' => 'Order',
+    'Customer' => 'Customer',
+    'Comment' => 'Comment', 
+    'Rate' => 'Rate', 
+    'Suggest' => 'Suggest',
+];
