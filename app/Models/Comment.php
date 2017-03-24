@@ -12,12 +12,12 @@ class Comment extends Model
         'content',
     ];
 
-    public function products()
+    public function product()
     {
         return $this->belongsTo(Product::class);
     }
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

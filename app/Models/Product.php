@@ -23,12 +23,12 @@ class Product extends Model
         'sum_rate',
     ];
 
-    public function orderDetails()
+    public function orderDetail()
     {
         return $this->hasOne(OrderDeTail::class);
     }
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
