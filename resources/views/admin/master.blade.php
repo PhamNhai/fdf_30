@@ -6,33 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>@lang('admin.Admin')</title>
+    <title>@lang('admin.admin')</title>
 
-    <link href="{!! asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}" rel="stylesheet">
+    {!! Html::style('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}
 
-    <link href="{!! asset('admin/bower_components/metisMenu/dist/metisMenu.min.css') !!}" rel="stylesheet">
+    {!! Html::style('admin/bower_components/metisMenu/dist/metisMenu.min.css') !!}
 
-    <link href="{!! asset('admin/dist/css/sb-admin-2.css') !!}" rel="stylesheet">
+    {!! Html::style('admin/dist/css/sb-admin-2.css') !!}
 
-    <link href="{!! asset('admin/bower_components/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet">
+    {!! Html::style('admin/bower_components/font-awesome/css/font-awesome.min.css') !!}
 
-    <link href="{!! asset('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}" rel="stylesheet">
+    {!! Html::style('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}
 
-    <link href="{!! asset('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}" rel="stylesheet">
+    {!! Html::style('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}
 
-    <link href="{!! asset('admin/mycss.css') !!}">
+    {!! Html::style('admin/mycss.css') !!}
 </head>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="javascript:void(0);">@lang('admin.Admin-Manager')</a>
+                <a class="navbar-brand" href="javascript:void(0);">@lang('admin.admin-manager')</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
@@ -40,14 +39,14 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="javascript:void(0);"><i class="fa fa-user fa-fw"></i>@lang('admin.User-Profile')
+                        <li><a href="javascript:void(0);"><i class="fa fa-user fa-fw"></i>@lang('admin.user-profile')
                             </a>
                         </li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-gear fa-fw"></i>@lang('admin.Settings')
+                        <li><a href="javascript:void(0);"><i class="fa fa-gear fa-fw"></i>@lang('admin.settings')
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-sign-out fa-fw"></i>@lang('admin.Logout')
+                        <li><a href="javascript:void(0);"><i class="fa fa-sign-out fa-fw"></i>@lang('admin.logout')
                             </a>
                         </li>
                     </ul>
@@ -59,110 +58,103 @@
                         <li class="sidebar-search">
                             {!! Form::open() !!}
                                 <div class="input-group custom-search-form">
-                                    {!! Form::text ('search', null,
-                                                        [
-                                                            'class' => 'form-control',
-                                                            'placeholder' => 'search'
-
-                                                        ]
-                                                    )
-                                    !!}
+                                    {!! Form::text ('search', null, [
+                                        'class' => 'form-control',
+                                        'placeholder' => 'search',
+                                    ]) !!}
                                     <span class="input-group-btn">
-                                    {!! Form::button('<i class="fa fa-search"></i>',
-                                                        [
-                                                            'type' => 'submit',
-                                                            'class' => 'btn btn-default'
-                                                        ]
-                                                    )
-                                    !!}
+                                    {!! Form::button('<i class="fa fa-search"></i>', [
+                                        'type' => 'submit',
+                                        'class' => 'btn btn-default',
+                                    ]) !!}
                                     </span>
                                 </div>
                             {!! Form::close() !!}
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-dashboard fa-fw"></i>
-                                @lang('admin.Dashboard')
+                                @lang('admin.dashboard')
                             </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="glyphicon glyphicon-gift"></i>
-                                @lang('admin.Type')
+                                @lang('admin.type')
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.List-Type')</a>
+                                    <a href="javascript:void(0);">@lang('admin.list-type')</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.Add-Type')</a>
+                                    <a href="javascript:void(0);">@lang('admin.add-type')</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-bar-chart-o fa-fw"></i>
-                                @lang('admin.Category')
+                                @lang('admin.category')
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.List-Category')</a>
+                                    <a href="javascript:void(0);">@lang('admin.list-category')</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.Add-Category')</a>
+                                    <a href="javascript:void(0);">@lang('admin.add-category')</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-cube fa-fw"></i>
-                                @lang('admin.Product')
+                                @lang('admin.product')
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.List-Product')</a>
+                                    <a href="javascript:void(0);">@lang('admin.list-product')</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.Add-Product')</a>
+                                    <a href="javascript:void(0);">@lang('admin.add-product')</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="fa fa-users fa-fw"></i>
-                                @lang('admin.User')
+                                @lang('admin.user')
                                 <span class="fa arrow"></span>
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.List-User')</a>
+                                    <a href="javascript:void(0);">@lang('admin.list-User')</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.Add-User')</a>
+                                    <a href="javascript:void(0);">@lang('admin.add-user')</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="glyphicon glyphicon-list-alt"></i>
-                                @lang('admin.Order')
+                                @lang('admin.order')
                             </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="glyphicon glyphicon-user"></i>
-                                @lang('admin.Customer')
+                                @lang('admin.customer')
                             </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="glyphicon glyphicon-comment"></i>
-                                @lang('admin.Comment')
+                                @lang('admin.comment')
                             </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="glyphicon glyphicon-star"></i>
-                                @lang('admin.Rate')
+                                @lang('admin.rate')
                             </a>
                         </li>
                         <li>
                             <a href="javascript:void(0);"><i class="glyphicon glyphicon-question-sign"></i>
-                                @lang('admin.Suggest')
+                                @lang('admin.suggest')
                             </a>
                         </li>
                     </ul>
@@ -178,22 +170,18 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="{!! asset('admin/bower_components/jquery/dist/jquery.min.js') !!}"></script>
+    {!! Html::script('admin/bower_components/jquery/dist/jquery.min.js') !!}
 
-    <script type="text/javascript" src="{!! asset('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}">
-    </script>
+    {!! Html::script('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
 
-    <script type="text/javascript" src="{!! asset('admin/bower_components/metisMenu/dist/metisMenu.min.js') !!}">
-    </script>
+    {!! Html::script('admin/bower_components/metisMenu/dist/metisMenu.min.js') !!}
 
-    <script type="text/javascript" src="{!! asset('admin/dist/js/sb-admin-2.js') !!}"></script>
+    {!! Html::script('admin/dist/js/sb-admin-2.js') !!}
 
-    <script type="text/javascript" src="{!! asset('admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}">
-    </script>
+    {!! Html::script('admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}
 
-    <script type="text/javascript" src="{!! asset('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}">
-    </script>
+    {!! Html::script('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}
 
-    <script type="text/javascript" src="{!! asset('admin/js/myscript.js') !!}"></script>
+    {!! Html::script('admin/js/myscript.js') !!}
 </body>
 </html>
