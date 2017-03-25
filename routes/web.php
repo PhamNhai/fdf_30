@@ -11,6 +11,8 @@
 |
 */
 
-Route::get('/', function () {
+Auth::routes();
+
+Route::get('home', function () {
     return view('admin.master');
-});
+})->middleware('check.auth');
