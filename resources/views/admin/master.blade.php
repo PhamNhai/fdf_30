@@ -34,6 +34,9 @@
                 <a class="navbar-brand" href="javascript:void(0);">@lang('admin.admin-manager')</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <p><font class="font">{{ strtoupper(Auth::user()->name) }}</font></p>
+                </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
@@ -46,8 +49,17 @@
                             </a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-sign-out fa-fw"></i>@lang('admin.logout')
+                        <li><a id="click" href="#">
+                                <i class="fa fa-sign-out fa-fw"></i>
+                                    @lang('admin.logout')
                             </a>
+                            {!! Form::open([
+                                'route' => 'logout',
+                                'method' => 'POST',
+                                'id' => 'logout-form',
+                                ])
+                            !!}
+                            {!! Form::close() !!}
                         </li>
                     </ul>
                 </li>
@@ -125,7 +137,7 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.list-User')</a>
+                                    <a href="javascript:void(0);">@lang('admin.list-user')</a>
                                 </li>
                                 <li>
                                     <a href="javascript:void(0);">@lang('admin.add-user')</a>

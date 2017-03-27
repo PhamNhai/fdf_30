@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use App\Http\Requests\RegisterRequest;
+
 
 class RegisterController extends Controller
 {
@@ -45,14 +48,6 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -65,7 +60,26 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role' => config('app.ad'),
+            'address' => $data['address'],
+            'phone' => $data['phone'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function register(RegisterRequest $request)
+    {
+        try {
+            $input = $request->all();
+            $user = $this->create($input);
+            $this->guard()->login($user);
+
+            return $this->registered($request, $user)
+                ?: redirect($this->redirectPath());
+        } catch (Exception $e) {
+            return redirect()->route('login')->with([
+                'flash_message'=>trans('admin.register-fail'),
+            ]);
+        }
     }
 }
