@@ -14,6 +14,7 @@ return [
 
     'name' => 'Laravel',
     'ad' => 'admin',
+    'image_path' => 'img/products',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +164,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        'App\Providers\HelperServiceProvider',
 
         /*
          * Package Service Providers...
@@ -229,6 +231,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
+        'CheckFile' => 'App\Helpers\CheckFile',
+        'Uuid' => Webpatser\Uuid\Uuid::class,
 
     ],
 

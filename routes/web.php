@@ -17,3 +17,10 @@ Route::get('home', function () {
 })->middleware('check.auth');
 
 Route::resource('category', 'Admin\CategoryController');
+
+Route::group(['prefix' => 'admin', 'middleware' => 'check.auth'], function () {
+    Route::get('home', function () {
+        return view('admin.master');
+    });
+    Route::resource('product', 'Admin\ProductController');
+});

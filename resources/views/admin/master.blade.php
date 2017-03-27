@@ -21,17 +21,16 @@
     {!! Html::style('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}
 
     {!! Html::style('admin/mycss.css') !!}
+    
+    @yield('item')
 </head>
 <body>
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="javascript:void(0);">@lang('admin.admin-manager')</a>
+                <a class="navbar-brand" href="javascript:void(0);">
+                    @lang('admin.admin-manager')
+                </a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
@@ -42,10 +41,11 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="javascript:void(0);"><i class="fa fa-user fa-fw"></i>@lang('admin.user-profile')
+                        <li><a href="javascript:void(0);"><i class="fa fa-user fa-fw"></i>      @lang('admin.user-profile')
                             </a>
                         </li>
-                        <li><a href="javascript:void(0);"><i class="fa fa-gear fa-fw"></i>@lang('admin.settings')
+                        <li><a href="javascript:void(0);"><i class="fa fa-gear fa-fw"></i>
+                            @lang('admin.settings')
                             </a>
                         </li>
                         <li class="divider"></li>
@@ -57,8 +57,7 @@
                                 'route' => 'logout',
                                 'method' => 'POST',
                                 'id' => 'logout-form',
-                                ])
-                            !!}
+                                ]) !!}
                             {!! Form::close() !!}
                         </li>
                     </ul>
@@ -84,7 +83,8 @@
                             {!! Form::close() !!}
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="fa fa-dashboard fa-fw"></i>
+                            <a href="javascript:void(0);"><i class="fa fa-dashboard fa-fw">
+                            </i>
                                 @lang('admin.dashboard')
                             </a>
                         </li>
@@ -123,10 +123,12 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.list-product')</a>
+                                    <a href="{{ action('Admin\ProductController@index') }}">@lang('admin.list-product')</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.add-product')</a>
+                                    <a href="{{ action('Admin\ProductController@create') }}">
+                                        @lang('admin.add-product')
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -176,6 +178,14 @@
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="col-lg-12">
+                        @if (Session::has('flash_message'))
+                            <div class="alert alert-{!! Session::get('flash_level')
+                                !!}">
+                                {!! Session::get('flash_message') !!}
+                            </div>
+                        @endif
+                    </div>
                    @yield('content')
                 </div>
             </div>

@@ -7,6 +7,7 @@ use App\Models\OrderDeTail;
 use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Rating;
+use File;
 
 class Product extends Model
 {
@@ -41,5 +42,18 @@ class Product extends Model
     public function ratings()
     {
         return $this->hasMany(Rating::class);
+    }
+
+    public function scopeDeleteProduct($query, $id)
+    {
+        $product = $query->find($id);
+        if ($product) {
+            File::delete(config('app.image_path')
+                . '/' . $product['image']);
+            $product->delete();
+
+            return true;
+        }
+        return false;
     }
 }
