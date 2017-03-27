@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyUsersTable extends Migration
+class Modify2UsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,17 +14,19 @@ class ModifyUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('avatar')->nullable();
-            $table->string('address');
-            $table->integer('phone');
-            $table->string('role');
+            $table->string('phone')->change();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('phone');
+            $table->integer('phone')->change();
         });
     }
 }
