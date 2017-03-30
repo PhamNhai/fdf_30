@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use App\Http\Requests\RegisterRequest;
 
-
 class RegisterController extends Controller
 {
     /*
@@ -78,7 +77,7 @@ class RegisterController extends Controller
                 ?: redirect($this->redirectPath());
         } catch (Exception $e) {
             return redirect()->route('login')->with([
-                'flash_message'=>trans('admin.register-fail'),
+                'flash_message' => trans('admin.register-fail'),
             ]);
         }
     }
