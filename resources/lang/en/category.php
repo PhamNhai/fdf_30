@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'list-category' => 'List Category',
+    'add-category' => 'Add Category',
+    'id' => 'ID',
+    'type' => 'Type',
+    'name' => 'Name',
+    'create-category-fail' => 'Category create fail',
+    'create-category-successfully' => 'Category create successfully',
+    'update-category-fail' => 'Category update fail',
+    'update-category-successfully' => 'Category update successfully',
+    'delete-category-fail' => 'Category delete fail',
+    'delete-category-successfully' => 'Category delete successfully',
+    'category' => 'Category',
+    'add' => 'Add',
+    'name' => 'Name',
+    'enter-name' => 'Enter name',
+    'type' => 'Type',
+    'add-category' => 'Add Category',
+    'reset' => 'Reset',
+    'edit' => 'Edit',
+    'delete' => 'Delete',
+    'update-category' => 'Update Category',
+    'update' => 'Update',
+];

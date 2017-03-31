@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\Auth;
 
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class Authmiddleware
@@ -15,7 +15,7 @@ class Authmiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   
+    {
         if (Auth::check()) {
             return $next($request);
         }

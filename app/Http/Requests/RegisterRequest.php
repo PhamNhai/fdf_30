@@ -43,6 +43,6 @@ class RegisterRequest extends FormRequest
             'password.min' => trans('admin.password-too-short'),
             'address.required' => trans('admin.enter-address'),
             'phone.required' => trans('admin.enter-phone-number'),
-        ];    
+        ];
     }
 }

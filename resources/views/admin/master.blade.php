@@ -109,10 +109,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.list-category')</a>
+                                    <a href="{{ route('category.index') }}">@lang('admin.list-category')</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.add-category')</a>
+                                    <a href="{{ route('category.create') }}">@lang('admin.add-category')</a>
                                 </li>
                             </ul>
                         </li>

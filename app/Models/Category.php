@@ -13,11 +13,16 @@ class Category extends Model
 
     public function typeCategory()
     {
-        return $this->belongsTo(TypeCategory::class);
+        return $this->belongsTo(TypeCategory::class, 'type_id');
     }
 
     public function products()
     {
         return $this->hasMany(Product::class);
+    }
+
+    public function scopeCreateCategory($query, $data)
+    {
+        return $this->create($data);
     }
 }

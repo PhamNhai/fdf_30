@@ -18,7 +18,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'avatar'=> $faker->imageUrl(100, 100),
+        'avatar' => $faker->imageUrl(100, 100),
         'phone' => $faker->phoneNumber,
         'address' => $faker->address,
         'role' => 'user',
@@ -29,7 +29,7 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Models\Category::class, function (Faker\Generator $faker){
+$factory->define(App\Models\Category::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'type_id' => $faker->numberBetween(1, 2),
@@ -38,7 +38,7 @@ $factory->define(App\Models\Category::class, function (Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Models\Product::class, function (Faker\Generator $faker){
+$factory->define(App\Models\Product::class, function (Faker\Generator $faker) {
     static $categoryIds;
 
     return [
@@ -46,7 +46,8 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker){
         'description' => $faker->paragraph,
         'image' => $faker->imageUrl(200, 200),
         'quantity' => $faker->numberBetween(1, 20),
-        'category_id' => $faker->randomElement($categoryIds ?: $categoryIds = App\Models\Category::pluck('id')->toArray()),
+        'category_id' => $faker
+        ->randomElement($categoryIds ?: $categoryIds = App\Models\Category::pluck('id')->toArray()),
         'rate' => $faker->randomFloat(2, 1, 5),
         'price' => $faker->randomFloat(2, 1, 20),
         'status' => '1',
@@ -57,7 +58,7 @@ $factory->define(App\Models\Product::class, function (Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Models\Comment::class, function (Faker\Generator $faker){
+$factory->define(App\Models\Comment::class, function (Faker\Generator $faker) {
     static $userIds;
     static $productIds;
 
@@ -70,7 +71,7 @@ $factory->define(App\Models\Comment::class, function (Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Models\Rating::class, function (Faker\Generator $faker){
+$factory->define(App\Models\Rating::class, function (Faker\Generator $faker) {
     static $userIds;
     static $productIds;
 
@@ -83,7 +84,7 @@ $factory->define(App\Models\Rating::class, function (Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Models\Order::class, function (Faker\Generator $faker){
+$factory->define(App\Models\Order::class, function (Faker\Generator $faker) {
     static $userIds;
 
     return [
@@ -96,7 +97,7 @@ $factory->define(App\Models\Order::class, function (Faker\Generator $faker){
     ];
 });
 
-$factory->define(App\Models\OrderDetail::class, function (Faker\Generator $faker){
+$factory->define(App\Models\OrderDetail::class, function (Faker\Generator $faker) {
     static $orderIds;
     static $productIds;
 
@@ -110,13 +111,13 @@ $factory->define(App\Models\OrderDetail::class, function (Faker\Generator $faker
     ];
 });
 
-$factory->define(App\Models\Suggest::class, function (Faker\Generator $faker){
+$factory->define(App\Models\Suggest::class, function (Faker\Generator $faker) {
     static $userIds;
 
     return [
         'user_id' => $faker->randomElement($userIds ?: $userIds = App\Models\User::pluck('id')->toArray()),
         'status' => $faker->boolean,
-        'content' =>$faker->paragraph,
+        'content' => $faker->paragraph,
         'created_at' => $faker->dateTime(),
         'updated_at' => $faker->dateTime(),
     ];

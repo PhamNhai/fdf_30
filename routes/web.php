@@ -10,9 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Auth::routes();
 
 Route::get('home', function () {
     return view('admin.master');
 })->middleware('check.auth');
+
+Route::resource('category', 'Admin\CategoryController');
