@@ -21,7 +21,7 @@
     {!! Html::style('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}
 
     {!! Html::style('admin/mycss.css') !!}
-    
+
     @yield('item')
 </head>
 <body>
@@ -109,10 +109,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{ route('category.index') }}">@lang('admin.list-category')</a>
+                                    <a href="{{ action('Admin\CategoryController@index') }}">@lang('admin.list-category')</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('category.create') }}">@lang('admin.add-category')</a>
+                                    <a href="{{ action('Admin\CategoryController@create') }}">@lang('admin.add-category')</a>
                                 </li>
                             </ul>
                         </li>
@@ -147,7 +147,7 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="glyphicon glyphicon-list-alt"></i>
+                            <a href="{{ action('Admin\OrderController@index') }}"><i class="glyphicon glyphicon-list-alt"></i>
                                 @lang('admin.order')
                             </a>
                         </li>

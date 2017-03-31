@@ -22,4 +22,15 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeUpdateOrder($query, $id)
+    {
+        $order = $query->findOrFail($id);
+        if ($order->status) {
+            $order->status = 0;
+        } else {
+            $order->status =1;
+        }
+        $order->save();
+    }
 }
