@@ -13,8 +13,7 @@
         'method' => 'POST',
         'action' => ['Admin\ProductController@store'],
         'enctype' => 'multipart/form-data',
-        ])
-    !!}
+        ]) !!}
         <div class="form-group">
             <label>@lang('admin.name')</label>
             {!! Form::text ('name', old('name'), [
@@ -33,7 +32,7 @@
                 $category,
                 null, [
                     'class' => 'form-control'
-                ]) !!}
+            ]) !!}
         </div>
         <div class="form-group">
             <label>@lang('admin.price')</label>

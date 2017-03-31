@@ -20,6 +20,7 @@ class ProductController extends Controller
     public function index()
     {   
         $product = Product::paginate(config('view.product_per_page'));
+        
         return view('admin.products.index', compact('product'));
     }
 
@@ -46,8 +47,12 @@ class ProductController extends Controller
         try {
             $input = $request->only('name', 'category_id',
                 'description', 'quantity', 'price', 'status');
-            $name =  CheckFile::checkFile($request);
-            $input['image'] = $name;
+            $name = CheckFile::uploadImage($request);
+            if ($name != null) {
+                $input['image'] = $name;
+            } else {
+                $input['image'] = null;
+            }
             Product::create($input);
 
             return redirect()->route('product.index')->with([
@@ -82,9 +87,16 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        $category = Category::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
+        if ($product) {
+            return view('admin.products.edit',
+            compact('product', 'categories'));
+        }
 
-        return view('admin.products.edit', compact('product', 'category'));
+        return redirect()->route('product.index')->with([
+            'flash_level' => 'warning',
+            'flash_message' => trans('admin.product-not-found'),
+        ]);
     }
 
     /**
@@ -104,11 +116,10 @@ class ProductController extends Controller
             $product->quantity = $request->quantity;
             $product->price = $request->price;
             $product->status = $request->status;
-            $name = CheckFile::checkFile($request);
-            if($name != '') {
+            $name = CheckFile::uploadImage($request);
+            if ($name) {
                 $product->image = $name;
-                file::delete(config('app.image_path')
-                     . '/' . $request->current_img);
+                file::delete(config('app.image_path') . '/' . $request->current_img);
             } else {
                 $product->image = $request->current_img;
             }
@@ -135,11 +146,11 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $res = Product::deleteProduct($id);
+        $response = Product::deleteProduct($id);
 
         return redirect()->route('product.index')->with([
-            'flash_level' => $res ? 'success' : 'warning',
-            'flash_message' => $res ? trans('admin.product-deleted') :
+            'flash_level' => $response ? 'success' : 'warning',
+            'flash_message' => $response ? trans('admin.product-deleted') :
                 trans('admin.delete-product-fail'),
         ]);
     }

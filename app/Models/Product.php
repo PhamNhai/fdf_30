@@ -48,12 +48,12 @@ class Product extends Model
     {
         $product = $query->find($id);
         if ($product) {
-            File::delete(config('app.image_path')
-                . '/' . $product['image']);
+            File::delete(config('app.image_path') . '/' . $product['image']);
             $product->delete();
 
             return true;
         }
+        
         return false;
     }
 }

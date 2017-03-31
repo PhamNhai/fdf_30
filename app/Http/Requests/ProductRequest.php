@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
 class ProductRequest extends FormRequest
-{
+{   
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -26,14 +26,15 @@ class ProductRequest extends FormRequest
     {   
         if ($request->isMethod('post')) {
             return [
-                'name' => 'required|unique:products|max:255',
+                'name' => 'required|max:255|unique:products',
                 'price' => 'required|numeric',
                 'description' => 'required',
                 'quantity' => 'required',
             ];
-        }
+        } 
+
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:255|unique:products,name,'.$request->id,
             'price' => 'required|numeric',
             'description' => 'required',
             'quantity' => 'required',

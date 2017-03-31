@@ -86,4 +86,5 @@ return [
     'add-product' => 'Add Product',
     'price-number' => 'Price Is Number',
     'name-max' => 'Name Too High',
+    'product-not-found' => 'Product Not Found!!',
 ];

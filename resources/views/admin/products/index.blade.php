@@ -10,7 +10,8 @@
                 <div class="col-sm-6">
                     <h3 class="box-title">
                         <p class="text-right additem">
-                            <a href="{{ action('Admin\ProductController@create') }}"
+                            <a href="{{
+                                action('Admin\ProductController@create') }}"
                                class="btn btn-block btn-primary btn-sm">
                                 @lang('admin.add-product')
                             </a>
@@ -106,6 +107,6 @@
                 @endforeach
             </table>
         </div>
-        <div class="box-footer">{{isset($product) ?  $product->links() : '' }}</div>
+        <div class="box-footer">{{ $product->links() }}</div>
     </div>
 @endsection()

@@ -10,13 +10,16 @@
 </div>
 <div class="col-lg-7 form-item">
     {!! Form::open([
-        'method' => 'PUT',
+        'method' => 'PATCH',
         'action' => [
             'Admin\ProductController@update',
             $product['id'],
             ],
         'enctype' => 'multipart/form-data',
         ]) !!}
+        @if (isset($product))
+            {{ Form::hidden('id', $product['id']) }}
+        @endif
         <div class="form-group">
             <label>@lang('admin.name')</label>
             {!! Form::text ('name', old('name',
@@ -34,7 +37,7 @@
             <label for="cate">@lang('admin.category')</label>
             @if (isset($product))
                 {!! Form::select('category',
-                    $category,
+                    $categories,
                     $product->category_id
                     ,[
                         'class'=>'form-control',
@@ -97,25 +100,18 @@
         </div>
         <div class="form-group">
             <label>
-            @if ($product['status'] === 1)
-                {!! Form::radio('status', 0, [
-                    'class' => 'radio-inline',
-                    ]) !!}
-                    @lang('admin.unable')
-                {!! Form::radio('status', 1, [
+                {!! Form::radio('status', 1,
+                    $product['status'] == 1 ? true : null,
+                    [
                     'class' => 'radio-inline',
                     ]) !!}
                     @lang('admin.enable')
-            @else
-                {!! Form::radio('status', 1, [
-                    'class' => 'radio-inline',
-                    ]) !!}
-                    @lang('admin.enable')
-                {!! Form::radio('status', 0, [
+                {!! Form::radio('status', 0, 
+                    $product['status'] == 0 ? true : null,
+                    [
                     'class' => 'radio-inline',
                     ]) !!}
                     @lang('admin.unable')
-            @endif
             </label>
         </div>
         {!! Form::button(@trans('admin.add-product'), [
