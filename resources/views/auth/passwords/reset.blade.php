@@ -36,7 +36,6 @@
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
-
                             </div>
                         </div>
 
@@ -76,7 +75,6 @@
                                         <strong>{{ $errors->first('password_confirmation') }}</strong>
                                     </span>
                                 @endif
-
                             </div>
                         </div>
 

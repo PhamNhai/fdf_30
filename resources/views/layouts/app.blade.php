@@ -54,6 +54,5 @@
 
     {!! Html::script('js/app.js') !!}
     {!! Html::script('admin/js/loginStyle.js') !!}
-
 </body>
 </html>

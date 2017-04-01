@@ -30,5 +30,6 @@ return [
 
     'compiled' => realpath(storage_path('framework/views')),
     'category_per_page' => 3,
+    'product_per_page' => 3,
 
 ];
