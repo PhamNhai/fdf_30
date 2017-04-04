@@ -106,7 +106,7 @@
                     'class' => 'radio-inline',
                     ]) !!}
                     @lang('admin.enable')
-                {!! Form::radio('status', 0, 
+                {!! Form::radio('status', 0,
                     $product['status'] == 0 ? true : null,
                     [
                     'class' => 'radio-inline',
