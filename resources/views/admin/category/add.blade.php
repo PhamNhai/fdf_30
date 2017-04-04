@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="col-lg-12">
-    <h1 class="page-header">@lang('category.category')
-        <small>@lang('category.add')</small>
+    <h1 class="page-header">{{ trans('category.category') }}
+        <small>{{ trans('category.add') }}</small>
     </h1>
 </div>
 <div class="col-lg-7 form-item">
@@ -14,7 +14,7 @@
         ])
     !!}
         <div class="form-group">
-            <label>@lang('category.name')</label>
+            <label>{{ trans('category.name') }}</label>
             {!! Form::text ('name', old('name'), [
                 'class' => 'form-control',
                 'placeholder' => @trans('category.enter-name'),
@@ -27,7 +27,7 @@
             @endif
         </div>
         <div class="form-group">
-            <label for="cate">@lang('category.type')</label>
+            <label for="cate">{{ trans('category.type') }}</label>
             {!! Form::select('type_id',
                 $typeId,
                 null, [

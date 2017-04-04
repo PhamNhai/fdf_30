@@ -45,7 +45,6 @@ class CategoryController extends Controller
         $input = $request->only('name', 'type_id');
         $category = Category::CreateCategory($input);
         if ($category && $category != null) {
-
             return redirect()->route('category.index')
                 ->with('success', trans('category.create-category-successfully'));
         } else {

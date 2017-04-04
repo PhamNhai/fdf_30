@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'list-order' => 'List Order',
+    'id' => 'ID',
+    'user' => 'User',
+    'price' => 'Price',
+    'status' => 'Status',
+    'date' => 'Date',
+    'ship-address' => 'Ship address',
+    'waitting' => 'Waitting',
+    'resolved' => 'Resolved',
+    'dola' => '$',
+    'delete' => 'Delete',
+    'show-order' => 'Show order',
+    'order-user' => 'Order user : ',
+    'price-per-product' => 'Price per product',
+    'quantity' => 'Quantity',
+    'total-price' => 'Total price',
+    'delete-order-fail' => 'Order delete fail',
+    'delete-order-successfully' => 'Order delete successfully',
+    'update-order-fail' => 'Order delete fail',
+    'update-order-successfully' => 'Order update successfully',
+    'back' => 'Back',
+    'total-price-of-order' => 'Total price of order :',
+    'status-show' => 'Status : ',
+    'ship-address-show' => 'Ship adress : ',
+    'created-at' => 'Created at : ',
+
+];

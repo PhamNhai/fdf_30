@@ -82,7 +82,7 @@ return [
     'enter-price' => 'Please Enter Price',
     'enter-description' => 'Please Enter Description',
     'enter-quantity' => 'Please Enter Quantity',
-    'name-exist' =>  'Name Already Exist',
+    'name-exist' => 'Name Already Exist',
     'add-product' => 'Add Product',
     'price-number' => 'Price Is Number',
     'name-max' => 'Name Too High',

@@ -5,10 +5,10 @@
         <div class="row" id="content">
             <div class="col-lg-10 col-lg-offset-1 panel panel-primary">
                 <div class="panel-heading">
-                    <h2>@lang('category.list-category')</h2>
+                    <h2>{{ trans('category.list-category') }}</h2>
                 </div>
                 <div class="panel-body">
-                    <a class="btn btn-primary pull-left" href="{!! action('Admin\CategoryController@create') !!}"><i class="fa fa-plus"></i>@lang('category.add-category')</a>
+                    <a class="btn btn-primary pull-left" href="{!! action('Admin\CategoryController@create') !!}"><i class="fa fa-plus"></i>{{ trans('category.add-category') }}</a>
                     <div class="panel-body">
                         @if (Session::has('errors'))
                             <div class="alert alert-danger">
@@ -35,11 +35,12 @@
                                                 <td>{{ $category->name }}</td>
                                                 <td>{{ $category->typeCategory->name }}</td>
                                                 <td><a href="{{ action('Admin\CategoryController@edit', $category->id) }}"
-                                                class="btn btn-block btn-primary btn-xs">@lang('category.edit')</a>
+                                                class="btn btn-block btn-primary btn-xs">{{ trans('category.edit') }}</a>
+                                                </td>
+                                                <td>
                                                 {!! Form::open([
                                                     'action' => ['Admin\CategoryController@destroy', $category['id']],
                                                     'method' => 'delete',
-                                                    'class' => 'fixform',
                                                     ])
                                                 !!}
                                                 {!! Form::button(@trans('category.delete'), [
@@ -60,5 +61,5 @@
             </div>
         </div>
     </div>
-    <div class="col-md-12">{{isset($categories) ?  $categories->links() : '' }}</div>
+    <div class="col-md-12">{{ $categories->links() }}</div>
 @endsection()

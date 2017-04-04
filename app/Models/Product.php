@@ -24,9 +24,9 @@ class Product extends Model
         'sum_rate',
     ];
 
-    public function orderDetail()
+    public function orderDetails()
     {
-        return $this->hasOne(OrderDeTail::class);
+        return $this->hasMany(OrderDeTail::class);
     }
 
     public function category()
@@ -53,7 +53,7 @@ class Product extends Model
 
             return true;
         }
-        
+
         return false;
     }
 }

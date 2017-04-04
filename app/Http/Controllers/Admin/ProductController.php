@@ -18,9 +18,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $product = Product::paginate(config('view.product_per_page'));
-        
+
         return view('admin.products.index', compact('product'));
     }
 
@@ -30,7 +30,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $category = Category::pluck('name', 'id');
 
         return view('admin.products.add', compact('category'));
@@ -43,10 +43,9 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(ProductRequest $request)
-    {   
+    {
         try {
-            $input = $request->only('name', 'category_id',
-                'description', 'quantity', 'price', 'status');
+            $input = $request->only('name', 'category_id', 'description', 'quantity', 'price', 'status');
             $name = CheckFile::uploadImage($request);
             if ($name != null) {
                 $input['image'] = $name;
@@ -89,8 +88,7 @@ class ProductController extends Controller
         $product = Product::find($id);
         $categories = Category::pluck('name', 'id');
         if ($product) {
-            return view('admin.products.edit',
-            compact('product', 'categories'));
+            return view('admin.products.edit', compact('product', 'categories'));
         }
 
         return redirect()->route('product.index')->with([
@@ -107,7 +105,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, $id)
-    {       
+    {
         try {
             $product = Product::find($id);
             $product->name = $request->name;
