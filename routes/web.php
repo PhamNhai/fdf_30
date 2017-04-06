@@ -20,4 +20,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check.auth'], function () {
     Route::resource('category', 'Admin\CategoryController');
     Route::resource('order', 'Admin\OrderController');
     Route::resource('user', 'Admin\UserController');
+    Route::resource('suggest', 'Admin\SuggestController');
 });

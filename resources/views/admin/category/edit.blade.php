@@ -43,4 +43,5 @@
             'type' => 'reset',
             ]) !!}
     {!! Form::close() !!}
+</div>
 @endsection()

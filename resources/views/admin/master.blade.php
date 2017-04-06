@@ -167,7 +167,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="glyphicon glyphicon-question-sign"></i>
+                            <a href="{{ action('Admin\SuggestController@index') }}"><i class="glyphicon glyphicon-question-sign"></i>
                                 @lang('admin.suggest')
                             </a>
                         </li>

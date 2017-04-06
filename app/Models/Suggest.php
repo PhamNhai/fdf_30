@@ -16,4 +16,15 @@ class Suggest extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeUpdateSuggest($query, $id)
+    {
+        $suggest = $query->findOrFail($id);
+        if ($suggest->status) {
+            $suggest->status = 0;
+        } else {
+            $suggest->status = 1;
+        }
+        $suggest->save();
+    }
 }
