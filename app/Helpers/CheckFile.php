@@ -16,4 +16,15 @@ class CheckFile
             return $name;
         }
     }
+
+    public static function uploadAvatar($request)
+    {
+        if ($request->hasFile('avatar')) {
+            $file = $request->file('avatar');
+            $name = Uuid::generate() . '_' . $file->getClientOriginalName();
+            $file->move(config('app.avatar_path'), $name);
+
+            return $name;
+        }
+    }
 }

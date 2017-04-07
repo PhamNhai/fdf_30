@@ -139,10 +139,10 @@
                             </a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.list-user')</a>
+                                    <a href="{{ action('Admin\UserController@index') }}">@lang('admin.list-user')</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">@lang('admin.add-user')</a>
+                                    <a href="{{ action('Admin\UserController@create') }}">@lang('admin.add-user')</a>
                                 </li>
                             </ul>
                         </li>

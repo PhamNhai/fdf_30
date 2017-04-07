@@ -32,5 +32,6 @@ return [
     'category_per_page' => 3,
     'product_per_page' => 3,
     'order_per_page' => 3,
+    'user_per_page' => 3,
 
 ];

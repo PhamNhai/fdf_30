@@ -14,7 +14,10 @@ return [
 
     'name' => 'Laravel',
     'ad' => 'admin',
+    'user' => 'user',
     'image_path' => 'img/products',
+    'avatar_default_path' => 'img/users/default-avatar-member.png',
+    'avatar_path' => 'img/users/',
 
     /*
     |--------------------------------------------------------------------------
