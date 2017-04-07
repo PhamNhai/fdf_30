@@ -21,6 +21,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check.auth'], function () {
     Route::resource('order', 'Admin\OrderController');
     Route::resource('user', 'Admin\UserController');
     Route::resource('suggest', 'Admin\SuggestController');
+    Route::get('/update-status/{userId}', [
+        'as' => 'product.status',
+        'uses' => 'Admin\ProductController@updateStatus'
+    ]);
 });
 
 Route::get('/', function () {
@@ -35,4 +39,9 @@ Route::get('product-deltais', function () {
 Route::get('cart', function () {
     App::setLocale('vn');
     return view('frontend.cart');
+});
+
+Route::group(['middleware' => 'check.auth'], function () {
+    App::setLocale('vn');
+    Route::resource('profile', 'User\UserController');
 });

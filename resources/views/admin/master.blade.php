@@ -9,19 +9,12 @@
     <title>@lang('admin.admin')</title>
 
     {!! Html::style('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') !!}
-
     {!! Html::style('admin/bower_components/metisMenu/dist/metisMenu.min.css') !!}
-
     {!! Html::style('admin/dist/css/sb-admin-2.css') !!}
-
     {!! Html::style('admin/bower_components/font-awesome/css/font-awesome.min.css') !!}
-
     {!! Html::style('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css')!!}
-
     {!! Html::style('admin/bower_components/datatables-responsive/css/dataTables.responsive.css') !!}
-
     {!! Html::style('admin/mycss.css') !!}
-
     @yield('item')
 </head>
 <body>
@@ -34,7 +27,14 @@
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <p><font class="font">{{ strtoupper(Auth::user()->name) }}</font></p>
+                {{ HTML::image(auth::user()->avatar ? auth::user()->avatar : config('app.avatar_default_path'), trans('user.this-is-avatar'),
+                    [
+                        'class' => 'img-avatar',
+                    ])
+                }}
+                </li>
+                <li>
+                    <p><font class="font">{{ ucwords(Auth::user()->name) }}</font></p>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0);">
@@ -89,20 +89,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="glyphicon glyphicon-gift"></i>
-                                @lang('admin.type')
-                                <span class="fa arrow"></span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="javascript:void(0);">@lang('admin.list-type')</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">@lang('admin.add-type')</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="javascript:void(0);"><i class="fa fa-bar-chart-o fa-fw"></i>
                                 @lang('admin.category')
                                 <span class="fa arrow"></span>
@@ -152,11 +138,6 @@
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);"><i class="glyphicon glyphicon-user"></i>
-                                @lang('admin.customer')
-                            </a>
-                        </li>
-                        <li>
                             <a href="javascript:void(0);"><i class="glyphicon glyphicon-comment"></i>
                                 @lang('admin.comment')
                             </a>
@@ -192,17 +173,12 @@
     </div>
 
     {!! Html::script('admin/bower_components/jquery/dist/jquery.min.js') !!}
-
     {!! Html::script('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
-
     {!! Html::script('admin/bower_components/metisMenu/dist/metisMenu.min.js') !!}
-
     {!! Html::script('admin/dist/js/sb-admin-2.js') !!}
-
     {!! Html::script('admin/bower_components/DataTables/media/js/jquery.dataTables.min.js') !!}
-
     {!! Html::script('admin/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js') !!}
-
     {!! Html::script('admin/js/myscript.js') !!}
+    @yield('script');
 </body>
 </html>

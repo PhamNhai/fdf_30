@@ -2,7 +2,13 @@
 
 @section('item')
     {!! Html::style('admin/item.css') !!}
+    {!! Html::style('admin/tam/show-more.css') !!}
 @endsection()
+
+@section('script')
+    {!! Html::script('admin/tam/show-more.js') !!}
+@endsection()
+
 @section('content')
     <div class="box box-primary">
         <div class="box-header with-border">
@@ -62,7 +68,7 @@
                     <td>
                         {{ $item->category->name }}
                     </td>
-                    <td>{{ $item->description }}</td>
+                    <td><span class = "more">{{ $item->description }}</span></td>
                     <td>
                         {{ HTML::image(config('app.image_path') . '/' . $item->image,
                             @trans('admin.this-is-image-product'),
@@ -76,11 +82,7 @@
                     <td>{{ $item->sum_comment }}</td>
                     <td>{{ $item->sum_rate }}</td>
                     <td>
-                        @if ($item->status === 0)
-                            @lang('admin.unable')
-                        @else
-                            @lang('admin.enable')
-                        @endif
+                        @include('admin.products.status')
                     </td>
                     <td>
                         <a href="{{ action('Admin\ProductController@edit', $item->id) }}"
