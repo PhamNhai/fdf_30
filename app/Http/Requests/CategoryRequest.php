@@ -28,4 +28,11 @@ class CategoryRequest extends FormRequest
             'type_id' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => trans('admin.enter-name'),
+        ];
+    }
 }

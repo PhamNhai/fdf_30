@@ -29,7 +29,7 @@ class Order extends Model
         if ($order->status) {
             $order->status = 0;
         } else {
-            $order->status =1;
+            $order->status = 1;
         }
         $order->save();
     }
