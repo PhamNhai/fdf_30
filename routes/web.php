@@ -22,3 +22,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'check.auth'], function () {
     Route::resource('user', 'Admin\UserController');
     Route::resource('suggest', 'Admin\SuggestController');
 });
+
+Route::get('/', function () {
+    App::setLocale('vn');
+    return view('frontend.product');
+});
+Route::get('product-deltais', function () {
+    App::setLocale('vn');
+    return view('frontend.product_details');
+});
+
+Route::get('cart', function () {
+    App::setLocale('vn');
+    return view('frontend.cart');
+});

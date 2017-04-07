@@ -9,3 +9,5 @@ Homestead.yaml
 .env
 /public/admin
 /public/img
+/public/frontend
+/public/icon
