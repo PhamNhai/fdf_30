@@ -55,6 +55,7 @@
             {!! Form::number('price', old('price',
                 isset($product) ? $product['price'] :null), [
                 'class' => 'form-control',
+                'step' => 'any',
                 'placeholder' => @trans('admin.enter-price'),
                 ]) !!}
             @if ($errors->has('price'))

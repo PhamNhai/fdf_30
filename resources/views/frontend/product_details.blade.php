@@ -70,10 +70,12 @@
             <div class="quantity clearfix">
                 {!! Form::button('-', [
                     'class' => 'minus',
+                    'id' => $product->id,
                     ])
                 !!}
                 {!! Form::text('quantity', 1, [
                     'class' => 'qty',
+                    'id' => $product->id,
                     'step' => 1,
                     'min'  => 1,
                     'title' => 'Qty',
@@ -82,6 +84,7 @@
                 !!}
                 {!! Form::button('+', [
                     'class' => 'plus',
+                    'id' => $product->id,
                     ])
                 !!}
             </div>

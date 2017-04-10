@@ -35,7 +35,7 @@
                                 @foreach ($suggests as $suggest)
                                 <tr>
                                     <td>
-                                        <img src={{ $suggest->user->avatar }} alt="">
+                                        <img src={{ asset($suggest->user->avatar) }} alt="">
                                         <a href="#" class="user-link">{{ $suggest->user->name }}</a>
                                     </td>
                                     <td>{{ $suggest->created_at }}</td>
@@ -72,4 +72,4 @@
         </div>
     </div>
     <div class="col-md-12">{{ $suggests->links() }}</div>
-@endsection()
+@endsection

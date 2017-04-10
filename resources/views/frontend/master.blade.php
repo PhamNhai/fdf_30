@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en-US">
 <head>
+    <title>{{ trans('frontend.foods-drinks') }}</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
 
@@ -15,8 +16,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('item')
 
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{ trans('frontend.foods-drinks') }}</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+        <script>
+            window.Laravel = {!! json_encode([
+                'csrfToken' => csrf_token(),
+            ]) !!};
+        </script>
 </head>
 <body class="stretched">
     <div id="wrapper" class="clearfix">
@@ -36,18 +41,12 @@
                             <li><a href="#">{{ trans('frontend.category') }}</a>
                                 <ul>
                                     @foreach($categories as $category)
-                                    <li><a href="#">
+                                    <li><a href="{{ route('product-category', $category->id) }}">
                                             <div>
                                                 <i class="fa fa-coffee" aria-hidden="true"></i>
-                                                {{ $category->typeCategory->name }}
+                                                {{ $category->name }}
                                             </div>
                                         </a>
-                                        <ul>
-                                            <li><a href="{{ route('product-category', $category->id) }}">
-                                                    {{ $category->name }}
-                                                </a>
-                                            </li>
-                                        </ul>
                                     </li>
                                     @endforeach()
                                 </ul>
@@ -71,11 +70,13 @@
                                     </li>
                                 </ul>
                             </li>
+                            @if (Auth::check())
                             <li class="mega-menu">
-                                <a href="#">
+                                <a href="{{ route('suggest') }}">
                                     <div>{{ trans('frontend.suggest') }}</div>
                                 </a>
                             </li>
+                            @endif
                             <li class="mega-menu">
                                 <a href="http://m.me/FOODSDRINKS.123345">
                                     <div> {{ trans('frontend.contact') }}
@@ -83,11 +84,45 @@
                                     </div>
                                 </a>
                             </li>
+                            @if (Auth::check())
+                            <li><a href="#"><div class="name-user">{{ ucwords(Auth::user()->name) }}</div></a>
+                                <ul>
+                                    <li><a href="#">
+                                            <div><i class="fa fa-user fa-fw" aria-hidden="true"></i>
+                                               {{ trans('admin.user-profile') }}
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li><a href="#">
+                                            <div><i class="fa fa-gear fa-fw" aria-hidden="true"></i>
+                                                {{ trans('admin.settings') }}
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li id="click-frontend"><a href="#">
+                                            <div><i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>
+                                                {{ trans('admin.logout') }}
+                                            </div>
+                                        </a>
+                                        {!! Form::open([
+                                            'class' => 'fix-form-frontend',
+                                            'route' => 'logout',
+                                            'method' => 'POST',
+                                            'id' => 'logout-form',
+                                            ]) !!}
+                                        {!! Form::close() !!}
+                                    </li>
+                                </ul>
+                            </li>
+                            @else
+                            <li><a href="{{ url('login') }}"><div>{{ trans('frontend.login') }}</div></a>
+                            @endif
+                            <li><a href="{{ url('admin/home') }}"><div>{{ trans('frontend.admin') }}</div></a>
                         </ul>
                         <div id="top-cart">
                             <a href="{{ route('cart') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                <span>6</span>
+                                <span> {{ Cart::getTotalQuantity() }} </span>
                             </a>
                         </div>
                         <div id="top-search">
@@ -117,6 +152,13 @@
                 <div class="container clearfix">
                     <div class="clear"></div>
                     <div id="shop" class="shop grid-container clearfix">
+                        <div class="col-lg-12">
+                            @if (Session::has('flash_message'))
+                                <div class="alert alert-{!! Session::get('flash_level') !!}">
+                                    {!! Session::get('flash_message') !!}
+                                </div>
+                            @endif
+                        </div>
                         @yield('content')
                     </div>
                 </div>

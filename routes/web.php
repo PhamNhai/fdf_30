@@ -12,7 +12,7 @@
 */
 Auth::routes();
 
-Route::group(['prefix' => 'admin', 'middleware' => 'check.auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['check.auth', 'check.admin']], function () {
     Route::get('home', function () {
         return view('admin.master');
     });
@@ -62,9 +62,34 @@ Route::get('remove-product-cart/{id}', [
     'uses' => 'Frontend\ProductController@removeProduct'
 ]);
 
-Route::post('order', ['as' => 'order', 'uses' => 'Frontend\ProductController@order']);
+Route::post('order', ['as' => 'order', 'uses' => 'Frontend\ProductController@order'])->middleware('check.auth');
 
 Route::get('product-category/{id}', [
     'as' => 'product-category',
-    'uses' => 'Frontend\CategoryController@showProduct',
+    'uses' => 'Frontend\FilterController@productCategory',
+]);
+
+Route::get('product-filter', [
+    'as' => 'product-filter',
+    'uses' => 'Frontend\FilterController@filterProduct',
+]);
+
+Route::get('product-filter-category', [
+    'as' => 'product-filter-category',
+    'uses' => 'Frontend\FilterController@filterProductCategory',
+]);
+
+Route::get('update-cart/{id}/{qty}', [
+    'as' => 'update',
+    'uses' => 'Frontend\ProductController@update',
+]);
+
+Route::get('suggest', [
+    'as' => 'suggest',
+    'uses' => 'Frontend\SuggestController@index',
+]);
+
+Route::post('suggest', [
+    'as' => 'post.suggest',
+    'uses' => 'Frontend\SuggestController@postSuggest',
 ]);
