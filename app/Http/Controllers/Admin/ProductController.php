@@ -152,4 +152,16 @@ class ProductController extends Controller
                 trans('admin.delete-product-fail'),
         ]);
     }
+
+    public function updateStatus($id)
+    {
+        $product = Product::updateStatus($id);
+        if ($product) {
+            return redirect()->back()
+                ->with('success', trans('admin.update-product-successfully'));
+        }
+
+        return redirect()->back()
+            ->with('errors', trans('admin.update-product-fail'));
+    }
 }

@@ -56,4 +56,11 @@ class Product extends Model
 
         return false;
     }
+
+    public function scopeUpdateStatus($query, $id)
+    {
+        $product = $query->findOrFail($id);
+        $product->status = ($product->status) ? config('app.unable') : config('app.enable');
+        $product->save();
+    }
 }

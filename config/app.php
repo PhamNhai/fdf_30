@@ -19,6 +19,8 @@ return [
     'avatar_default_path' => 'img/users/default-avatar-member.png',
     'avatar_path' => 'img/users/',
     'logo' => 'img/logo/1452022892869.jpg',
+    'unable' => 0,
+    'enable' => 1,
 
     /*
     |--------------------------------------------------------------------------

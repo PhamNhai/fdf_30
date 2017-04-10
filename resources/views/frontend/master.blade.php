@@ -12,6 +12,7 @@
     {!! Html::style('frontend/css/magnific-popup.css') !!}
     {!! Html::style('frontend/css/components/ion.rangeslider.css') !!}
     {!! Html::style('frontend/css/mystyle.css') !!}
+    @yield('item')
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ trans('frontend.foods-drinks') }}</title>
