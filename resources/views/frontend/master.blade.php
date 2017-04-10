@@ -30,36 +30,25 @@
                     </div>
                     <nav id="primary-menu">
                         <ul>
-                            <li><a href="#">{{ trans('frontend.dashboard') }}</a>
+                            <li><a href="{{ route('frontend.product') }}">{{ trans('frontend.dashboard') }}</a>
                             </li>
                             <li><a href="#">{{ trans('frontend.category') }}</a>
                                 <ul>
+                                    @foreach($categories as $category)
                                     <li><a href="#">
                                             <div>
                                                 <i class="fa fa-coffee" aria-hidden="true"></i>
-                                                {{ trans('frontend.drinks') }}
+                                                {{ $category->typeCategory->name }}
                                             </div>
                                         </a>
                                         <ul>
-                                            <li><a href="slider-revolution.html">Cafe</a>
-                                            </li>
-                                            <li><a href="slider-revolution.html">Sữa</a>
-                                            </li>
-                                            <li><a href="slider-revolution.html">Sinh Tố</a>
+                                            <li><a href="{{ route('product-category', $category->id) }}">
+                                                    {{ $category->name }}
+                                                </a>
                                             </li>
                                         </ul>
                                     </li>
-                                    <li><a href="widgets.html">
-                                            <div><i class="fa fa-cutlery" aria-hidden="true"></i>
-                                                {{ trans('frontend.foods') }}
-                                            </div>
-                                        </a>
-                                        <ul>
-                                            <li><a href="#">KFC</a></li>
-                                            <li><a href="#">Bánh Mì</a></li>
-                                            <li><a href="#">Trái Cây</a></li>
-                                        </ul>
-                                    </li>
+                                    @endforeach()
                                 </ul>
                             </li>
                             <li><a href="#"><div>{{ trans('frontend.information') }}</div></a>
@@ -95,7 +84,7 @@
                             </li>
                         </ul>
                         <div id="top-cart">
-                            <a href="#" id="top-cart-trigger">
+                            <a href="{{ route('cart') }}">
                                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                                 <span>6</span>
                             </a>
@@ -176,13 +165,13 @@
     </div>
     <div id="gotoTop" class="fa fa-arrow-circle-up"></div>
 
-     {!! Html::script('frontend/js/jquery.js') !!}
-     {!! Html::script('frontend/js/plugins.js') !!}
-     {!! Html::script('frontend/js/rangeslider.min.js') !!}
-     {!! Html::script('frontend/js/jquery.min.js') !!}
-     {!! Html::script('frontend/js/bootstrap.min.js') !!}
-     {!! Html::script('frontend/js/functions.js') !!}
-     {!! Html::script('frontend/js/myscript.js') !!}
+    {!! Html::script('frontend/js/jquery.js') !!}
+    {!! Html::script('frontend/js/plugins.js') !!}
+    {!! Html::script('frontend/js/rangeslider.min.js') !!}
+    {!! Html::script('frontend/js/jquery.min.js') !!}
+    {!! Html::script('frontend/js/bootstrap.min.js') !!}
+    {!! Html::script('frontend/js/functions.js') !!}
+    {!! Html::script('frontend/js/myscript.js') !!}
 
 </body>
 </body>

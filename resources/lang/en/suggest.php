@@ -14,5 +14,4 @@ return [
     'update-suggest-fail' => 'Suggest update fail',
     'delete-suggest-successfully' => 'Suggest delete successfully',
     'delete-suggest-fail' => 'Suggest delete fail',
-
 ];

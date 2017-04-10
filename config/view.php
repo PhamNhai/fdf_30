@@ -30,7 +30,7 @@ return [
 
     'compiled' => realpath(storage_path('framework/views')),
     'category_per_page' => 3,
-    'product_per_page' => 3,
+    'product_per_page' => 12,
     'order_per_page' => 3,
     'user_per_page' => 3,
     'suggest_per_page' => 3,
