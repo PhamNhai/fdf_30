@@ -1,18 +1,24 @@
 @extends('frontend.master')
 @section('content')
 <div class="product-item-details">
-    <div class="image-details">
-        <a href="#">
-            {{ Html::image(config('app.image_path') . '/' . '2.jpg') }}
-        </a>
+    <div class="right">
+        <div class="image-details">
+            <a href="#">
+                {{ Html::image(config('app.image_path') . '/' . $product->image) }}
+            </a>
+        </div>
         <textarea class="form-control fix-comment" id="comment"
             placeholder="@lang('frontend.type-comment')"></textarea>
     </div>
     <div class="ifo-img">
-        <div class="product-price"><ins>$24.99</ins></div>
+        <div class="product-price"><ins>${{ $product->price }}</ins></div>
         <div class="line fix-line"></div>
         {!! Form::open([
-            'method' => 'POST',
+            'method' => 'GET',
+            'route' => [
+                'shopping',
+                $product->id,
+                ],
             'enctype' => 'multipart/form-data',
             'class' => 'cart nobottommargin clearfix',
             ]) !!}
@@ -40,14 +46,11 @@
                 ])
             !!}
         {!! Form::close() !!}
-
         <div class="clear"></div>
         <div class="line fix-line"></div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-        Libero velit id eaque ex quae laboriosam nulla optio doloribus!
-        Perspiciatis, libero, neque, perferendis at nisi optio dolor!</p>
-        <p>Perspiciatis ad eveniet ea quasi debitis quos laborum eum
-        reprehenderit eaque explicabo assumenda rem modi.</p>
+        <p>
+            {{ $product->description }}
+        </p>
         <div class="panel panel-default product-meta">
             <div class="panel-body">
                 <span class="posted_in">

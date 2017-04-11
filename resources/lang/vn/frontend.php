@@ -21,7 +21,7 @@ return [
     'quantity' => 'Số Lượng',
     'total' => 'Toàn Bộ',
     'total-money' => 'Tổng Tiền Phải Trả',
-    'pay' => 'Thanh Toán',
+    'pay' => 'Đặt Hàng',
     'cart-total' => 'Toàn Bộ Giỏ Hàng',
     'shipping' => 'Chi Phí Vận Chuyển',
     'total-money-product' => 'Tổng Tiền Hàng',

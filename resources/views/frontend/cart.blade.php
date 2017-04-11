@@ -1,6 +1,10 @@
 @extends('frontend.master')
 @section('content')
 <div class="bottommargin">
+    {{ Form::open([
+        'route' => 'order',
+        'method' => 'post',
+    ]) }}
     <table class="table cart">
         <thead>
             <tr>
@@ -13,35 +17,46 @@
             </tr>
         </thead>
         <tbody>
+            @foreach($contents as $content)
             <tr class="cart_item">
                 <td>
-                    <a href="#" class="remove" title="Remove this item">
+                    <a href="{{ route('remove-product', $content->id) }}" class="remove" title="Remove this item">
                         <i class="fa fa-trash-o" aria-hidden="true"></i>
                     </a>
                 </td>
                 <td class="cart-product-thumbnail">
-                    <a href="#"><img width="64" height="64"
-                        src="images/shop/thumbs/small/dress-3.jpg"
-                        alt="Pink Printed Dress">
+                    <a href="#">
+                    {{ Html::image(config('app.image_path') . '/' . $content['attributes']['image']) }}
                     </a>
                 </td>
                 <td class="cart-product-name">
-                    <a href="#">Pink Printed Dress</a>
+                    <a href="#">{{ $content->name }}</a>
                 </td>
                 <td class="cart-product-price">
-                    <span class="amount">$19.99</span>
+                    <span class="amount">$ {{ $content->price }}</span>
                 </td>
                 <td class="cart-product-quantity">
                     <div class="quantity clearfix">
-                        <input type="button" value="-" class="minus">
-                        <input type="text" name="quantity" value="2" class="qty"/>
-                        <input type="button" value="+" class="plus">
+                    {!! Form::button('-', [
+                        'class' => 'minus',
+                        ]) !!}
+                    {!! Form::text('quantity', $content->quantity, [
+                        'class' => 'qty',
+                        'step' => 1,
+                        'min'  => 1,
+                        'title' => 'Qty',
+                        'size' => 4,
+                    ]) !!}
+                    {!! Form::button('+', [
+                        'class' => 'plus',
+                        ]) !!}
                     </div>
                 </td>
                 <td class="cart-product-subtotal">
-                    <span class="amount">$39.98</span>
+                    <span class="amount">$ {!! $content->price * $content->quantity !!}</span>
                 </td>
             </tr>
+            @endforeach()
             <tr class="cart_item">
                 <td colspan="6">
                     <div class="row clearfix">
@@ -49,59 +64,25 @@
                             <table>
                                 <tr>
                                     <td>{{ trans('frontend.total-money') }}:</td>
-                                    <td>$99</td>
+                                    <td>$ {{ $subTotal }}</td>
                                 </tr>
                             </table>
                         </div>
                         <div class="col-md-8 col-xs-8 nopadding">
-                            <a href="#" id="show-cart-deltais"
-                                class="button button-3d notopmargin fright">
-                                {{ trans('frontend.pay') }}
-                            </a>
+                            {!! Form::button(trans('frontend.pay'), [
+                                'class' => 'button button-3d notopmargin fright',
+                                'id' => 'show-cart-deltais',
+                                'type' => 'submit',
+                            ]) !!}
                         </div>
                     </div>
                 </td>
             </tr>
         </tbody>
     </table>
+    {{ Form::close() }}
 </div>
 <a href="{!! url('/') !!}" class="button button-small button-3d header-button">
     {{ trans('frontend.back') }}
 </a>
-<div class="line fix-line"></div>
-<div class="table-responsive" id="my-cart">
-    <h4>{{ trans('frontend.cart-total') }}</h4>
-
-    <table class="table cart">
-        <tbody>
-            <tr class="cart_item">
-                <td class="cart-product-name">
-                    <strong>{{ trans('frontend.total-money-product') }}</strong>
-                </td>
-
-                <td class="cart-product-name">
-                    <span class="amount">$106.94</span>
-                </td>
-            </tr>
-            <tr class="cart_item">
-                <td class="cart-product-name">
-                    <strong>{{ trans('frontend.shipping') }}</strong>
-                </td>
-
-                <td class="cart-product-name">
-                    <span class="amount">Free Delivery</span>
-                </td>
-            </tr>
-            <tr class="cart_item">
-                <td class="cart-product-name">
-                    <strong>{{ trans('frontend.total-money') }}</strong>
-                </td>
-
-                <td class="cart-product-name">
-                    <span class="amount color lead"><strong>$106.94</strong></span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
 @endsection()

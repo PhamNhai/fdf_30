@@ -171,6 +171,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         'App\Providers\HelperServiceProvider',
+        Darryldecode\Cart\CartServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -239,6 +240,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'CheckFile' => 'App\Helpers\CheckFile',
         'Uuid' => Webpatser\Uuid\Uuid::class,
+        'Cart' => Darryldecode\Cart\Facades\CartFacade::class,
 
     ],
 
