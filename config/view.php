@@ -34,5 +34,6 @@ return [
     'order_per_page' => 3,
     'user_per_page' => 3,
     'suggest_per_page' => 3,
+    'comment_per_page' => 3,
 
 ];

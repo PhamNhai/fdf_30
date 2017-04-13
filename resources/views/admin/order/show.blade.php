@@ -29,7 +29,7 @@
     @foreach ($orderDetails as $orderDetail)
     <div class="member-entry">
         <a href="#" class="member-img">
-            <img src={{ $orderDetail->product->image }} class="img-rounded">
+            <img src={{ asset($orderDetail->product->image) }} class="img-rounded">
             <i class="fa fa-forward"></i>
         </a>
         <div class="member-details">
@@ -46,9 +46,9 @@
                 <tbody>
                     <tr>
                         <td></td>
-                        <td>{{ $orderDetail->price / $orderDetail->quantity }}<i class="fa fa-dollar"></i></td>
-                        <td>{{ $orderDetail->quantity }}</td>
                         <td>{{ $orderDetail->price }}<i class="fa fa-dollar"></i></td>
+                        <td>{{ $orderDetail->quantity }}</td>
+                        <td>{{ $orderDetail->price * $orderDetail->quantity }}<i class="fa fa-dollar"></i></td>
                     </tr>
                 </tbody>
             </table>

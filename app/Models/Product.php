@@ -63,4 +63,16 @@ class Product extends Model
         $product->status = ($product->status) ? config('app.unable') : config('app.enable');
         $product->save();
     }
+
+    public function scopeIsRatedProduct($query, $producId)
+    {
+        if (auth()->check()) {
+            $currentId = auth()->user()->id;
+            $result = Rating::where('product_id', $producId)->where('user_id', $currentId)->first();
+
+            return $result ? $result->rate : 'not rate';
+        }
+
+        return null;
+    }
 }
