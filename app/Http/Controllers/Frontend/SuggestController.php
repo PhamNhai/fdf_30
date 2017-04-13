@@ -8,7 +8,8 @@ use App\Models\Suggest;
 
 class SuggestController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         return view('frontend.suggest');
     }
 
@@ -19,10 +20,11 @@ class SuggestController extends Controller
         $data['status'] = config('app.unable');
         $suggest = Suggest::create($data);
 
-        if ($suggest) {
+        if ($suggest)
+        {
             return redirect()->route('frontend.product')->with([
-            'flash_level' => 'success',
-            'flash_message' => trans('frontend.suggest-success'),
+                'flash_level' => 'success',
+                'flash_message' => trans('frontend.suggest-success'),
             ]);
         }
 

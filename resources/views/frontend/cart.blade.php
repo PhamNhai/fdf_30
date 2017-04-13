@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($contents as $key=>$content)
+            @foreach ($contents as $key => $content)
             <tr class="cart_item">
                 <td>
                     <a href="{{ route('remove-product', $content->id) }}" class="remove" title="Remove this item">
@@ -32,8 +32,8 @@
                 </td>
                 <td class="cart-product-name">
                     <a href="#">{{ $content->name }}</a>
-                    {{ Form::hidden("products[$key]['id']", $content->id) }}
-                    {{ Form::hidden("products[$key]['price']", $content->price) }}
+                    {{ Form::hidden("products[$key][id]", $content->id) }}
+                    {{ Form::hidden("products[$key][price]", $content->price) }}
                     {{ Form::hidden('user_id', Auth::id()) }}
                 </td>
                 <td class="cart-product-price">
@@ -45,7 +45,7 @@
                         'class' => 'minus',
                         'id' => $content->id,
                         ]) !!}
-                    {!! Form::text("products[$key]['quantity']", $content->quantity, [
+                    {!! Form::text("products[$key][quantity]", $content->quantity, [
                         'class' => 'qty',
                         'id' => $content->id,
                         'step' => 1,
@@ -66,7 +66,7 @@
                     <span class="amount">$ {!! $content->price * $content->quantity !!}</span>
                 </td>
             </tr>
-            @endforeach()
+            @endforeach
             <tr class="cart_item">
                 <td colspan="6">
                     <div class="row clearfix">
@@ -102,4 +102,4 @@
 <a href="{!! url('/') !!}" class="button button-small button-3d header-button">
     {{ trans('frontend.back') }}
 </a>
-@endsection()
+@endsection

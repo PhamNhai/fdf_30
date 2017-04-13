@@ -11,12 +11,13 @@ class FilterController extends Controller
     public function productCategory($id)
     {
         $productCategory = Product::where('category_id', $id)->get();
-        $cateId = $id;
+        $categoryId = $id;
 
-        return view('frontend.product', compact('productCategory', 'cateId'));
+        return view('frontend.product', compact('productCategory', 'categoryId'));
     }
 
-    public function filterProduct(Request $request) {
+    public function filterProduct(Request $request)
+    {
         if ($request->filter == 'pr') {
             $productByPrice = Product::orderBy('price', 'asc')->get();
 
@@ -28,16 +29,21 @@ class FilterController extends Controller
         }
     }
 
-    public function filterProductCategory(Request $request) {
-        $cateId = $request->cateId;
+    public function filterProductCategory(Request $request)
+    {
+        $categoryId = $request->categoryId;
         if ($request->filter == 'pr') {
-            $productCategoryByPrice = Product::orderBy('price', 'asc')->where('category_id', $cateId)->get();
+            $productCategoryByPrice = Product::orderBy('price', 'asc')->where(
+                'category_id',
+                $categoryId )->get();
 
-            return view('frontend.product', compact('productCategoryByPrice', 'cateId'));
+            return view('frontend.product', compact('productCategoryByPrice', 'categoryId'));
         } elseif ($request->filter == 'new') {
-            $productCategoryByNew = Product::orderBy('created_at', 'desc')->where('category_id', $cateId)->get();
+            $productCategoryByNew = Product::orderBy('created_at', 'desc')->where(
+                'category_id',
+                $categoryId )->get();
 
-            return view('frontend.product', compact('productCategoryByNew', 'cateId'));
+            return view('frontend.product', compact('productCategoryByNew', 'categoryId'));
         }
     }
 }

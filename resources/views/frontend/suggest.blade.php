@@ -15,4 +15,4 @@
     ])
 !!}
 {!! @Form::close() !!}
-@endsection()
+@endsection

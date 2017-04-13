@@ -10,6 +10,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Cart;
 use View;
+use DB;
 
 class ProductController extends Controller
 {
@@ -35,18 +36,18 @@ class ProductController extends Controller
     public function shopping(Request $request)
     {
         $id = $request::instance()->id;
-        $product_buy = Product::findOrFail($id);
+        $productBuy = Product::findOrFail($id);
         if (!$request::instance()->quantity) {
             $quantity = 1;
         } else {
             $quantity = $request::instance()->quantity;
         }
         Cart::add(array(
-            'id' => $product_buy->id,
-            'name' => $product_buy->name,
+            'id' => $productBuy->id,
+            'name' => $productBuy->name,
             'quantity' => $quantity,
-            'price' => $product_buy->price,
-            'attributes' => array('image' => $product_buy->image,)
+            'price' => $productBuy->price,
+            'attributes' => array('image' => $productBuy->image,)
             ));
 
         return back();
@@ -69,26 +70,42 @@ class ProductController extends Controller
 
     public function order(Request $request)
     {
-        $input['user_id'] = $request::instance()->user_id;
-        $input['status'] = config('app.status_order_default');
-        $input['price'] = Cart::getSubTotal();
-        $input['ship_address'] = $request::instance()->address;
+        try {
+            $input['user_id'] = $request::instance()->user_id;
+            $input['status'] = config('app.status_order_default');
+            $input['price'] = Cart::getSubTotal();
+            $input['ship_address'] = $request::instance()->address;
 
-        $order = Order::create($input);
-        $products = $request::instance()->products;
-        foreach($products as $item) {
-            $data['order_id'] = $order->id;
-            $data['product_id'] = $item["'id'"];
-            $data['quantity'] = $item["'quantity'"];
-            $data['price'] = $item["'price'"];
-            OrderDetail::create($data);
-            Cart::clear();
+            DB::beginTransaction();
+            $order = Order::create($input);
+            $products = $request::instance()->products;
+            $datas = [];
+            foreach($products as $item) {
+                $data['order_id'] = $order->id;
+                $data['product_id'] = $item['id'];
+                $data['quantity'] = $item['quantity'];
+                $data['price'] = $item['price'];
+                $datas[] = $data;
+            }
+            $orderDetail = OrderDetail::insert($datas);
+            if ($orderDetail) {
+                DB::commit();
+                cart::clear();
+
+                return redirect()->route('frontend.product')->with([
+                    'flash_level' => 'success',
+                    'flash_message' => trans('frontend.order-success'),
+                ]);
+            }
+            DB::rollBack();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return redirect()->back()->with([
+                'flash_level' => 'warning',
+                'flash_message' => trans('frontend.order-fail'),
+            ]);
         }
-
-        return redirect()->route('frontend.product')->with([
-        'flash_level' => 'success',
-        'flash_message' => trans('frontend.order-success'),
-        ]);
     }
 
     public function update()

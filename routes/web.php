@@ -93,3 +93,8 @@ Route::post('suggest', [
     'as' => 'post.suggest',
     'uses' => 'Frontend\SuggestController@postSuggest',
 ]);
+
+Route::post('search', [
+    'as' => 'search-frontend',
+    'uses' => 'Frontend\SearchController@index',
+]);

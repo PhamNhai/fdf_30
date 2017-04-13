@@ -129,12 +129,12 @@
                             <a href="#" id="top-search-trigger"><i class="fa fa-search-plus"
                                 aria-hidden="true"></i></a>
                             {!! Form::open([
-                                'route' => 'login',
+                                'route' => 'search-frontend',
                                 'method' => 'POST',
                                 'role' => 'form',
                                 ])
                             !!}
-                                {!! Form::text ('q', old('q'), [
+                                {!! Form::text ('request', old('request'), [
                                     'class' => 'form-control',
                                     'placeholder' => @trans('frontend.type-and-enter'),
                                     ])

@@ -41,4 +41,8 @@ return [
     'send' => 'Gửi',
     'suggest-success' => 'Bạn Đã Gửi Gợi Ý Thành Công!',
     'suggest-fail' => 'Bạn Chưa Gửi Gợi Ý Thành Công!',
+    'error-search' => 'Tìm Kiếm Không Thành Công!',
+    'product-relationship' => 'Các Sản Phẩm Có Liên Quan Tới: ',
+    'product-relationship-none' => 'Không Có Sản Phẩm Liên Quan',
+    'order-fail' => 'Đặt Hàng Không Thành Công',
 ];
