@@ -37,7 +37,7 @@
                                 @foreach ($orders as $order)
                                 <tr>
                                     <td>
-                                        <img src={{ $order->user->avatar }} alt="">
+                                        <img src={{ asset($order->user->avatar) }} alt="">
                                         <a href="#" class="user-link">{{ $order->user->name }}</a>
                                     </td>
                                     <td>{{ $order->created_at }}</td>

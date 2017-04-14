@@ -1,14 +1,59 @@
 @extends('frontend.master')
+
+@section('item')
+    {!! Html::style('http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css') !!}
+    {!! Html::style('admin/tam/rate/css/star-rating.css') !!}
+    {!! Html::style('admin/tam/rate/themes/krajee-svg/theme.css') !!}
+    {!! Html::style('admin/tam/rate.css') !!}
+    {!! Html::style('admin/tam/comment.css') !!}
+@endsection()
+
+@section('script')
+    {!! Html::script('//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js') !!}
+    {!! Html::script('admin/tam/rate/js/star-rating.js') !!}
+    {!! Html::script('admin/tam/rate/themes/krajee-svg/theme.js') !!}
+    {!! Html::script('admin/tam/rate/js/locales/{lang}.js') !!}
+    {!! Html::script('admin/tam/rate/rate.js') !!}
+@endsection()
 @section('content')
 <div class="product-item-details">
+    @if (Session::has('errors'))
+        <div class="alert alert-danger">
+            {{ Session::get('errors') }}
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    @endif
     <div class="right">
         <div class="image-details">
             <a href="#">
                 {{ Html::image(config('app.image_path') . '/' . $product->image) }}
             </a>
         </div>
-        <textarea class="form-control fix-comment" id="comment"
-            placeholder="@lang('frontend.type-comment')"></textarea>
+        @if (auth()->check())
+        {!! Form::open([
+        'method' => 'POST',
+        'action' => ['User\CommentController@store'],
+        ]) !!}
+        {!! Form::hidden('user_id', Auth::user()->id) !!}
+        {!! Form::hidden('product_id', $product["id"]) !!}
+        {!! Form::textarea('content', null, [
+            'class' => 'form-control fix-comment',
+            'id' => "comment",
+            'placeholder' => trans('frontend.type-comment'),
+            'cols' => '50',
+            'rows' => '3',
+        ]) !!}
+
+        {!! Form::button(trans('frontend.send'), [
+            'class' => 'btn btn-primary',
+            'type' => 'submit',
+        ]) !!}
+        {!! Form::close() !!}
+        @endif
     </div>
     <div class="ifo-img">
         <div class="product-price"><ins>${{ $product->price }}</ins></div>
@@ -66,19 +111,33 @@
         </div>
         <div class="line fix-line"></div>
             <div class="feed-back">
-                <div>
-                    {{ trans('frontend.rate') }}
-                </div>
-                <div class="m-comment">
-                    <img src="{!! asset('icon/widget-comment@2x.png') !!}">
-                    <span>6</span>
-                </div>
-        </div>
+                @if (auth()->check())
+                    <div>
+                        {!! Form::open() !!}
+                            <div class="hide" data-route="{{ url('rate') }}"></div>
+                            {!! Form::text('rate', $userRateValue, [
+                                'id' => "input-2",
+                                'class' => 'rating rating-loading',
+                                'data-size' => "xs",
+                                'data-step' => "1",
+                            ]) !!}
+                            {!! Form::hidden('product_id', $product->id, [
+                                'id' => 'product-id',
+                            ]) !!}
+                            {!! Form::hidden('user_id', Auth::user()->id, [
+                                'id' => 'user_id',
+                            ]) !!}
+                        {!! Form::close() !!}
+                   </div>
+                @endif
+            </div>
         <div class="line fix-line"></div>
         <a href="{!! url('/') !!}"
             class="button button-small button-3d header-button">
             {{ trans('frontend.back') }}
         </a>
+        <div class="line fix-line"></div>
+        @include('user.comment.comment')
     </div>
 </div>
 @endsection()

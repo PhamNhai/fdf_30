@@ -21,4 +21,11 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeCreateComment($query, $request)
+    {
+        $input = $request->only('user_id', 'product_id', 'content');
+
+        return $this->create($input);
+    }
 }

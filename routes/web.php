@@ -36,7 +36,12 @@ Route::get('/', [
 Route::group(['middleware' => 'check.auth'], function () {
     App::setLocale('vn');
     Route::resource('profile', 'User\UserController');
+    Route::resource('comment', 'User\CommentController');
 });
+
+Route::resource('rate', 'RateController', [
+    'only' => ['store']
+]);
 
 Route::get('product-deltais/{id}', [
     'as' => 'frontend.product-deltais',

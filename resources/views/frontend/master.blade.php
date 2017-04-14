@@ -12,6 +12,7 @@
     {!! Html::style('frontend/css/magnific-popup.css') !!}
     {!! Html::style('frontend/css/components/ion.rangeslider.css') !!}
     {!! Html::style('frontend/css/mystyle.css') !!}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     @yield('item')
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -172,6 +173,7 @@
     {!! Html::script('frontend/js/bootstrap.min.js') !!}
     {!! Html::script('frontend/js/functions.js') !!}
     {!! Html::script('frontend/js/myscript.js') !!}
+    @yield('script')
 
 </body>
 </body>

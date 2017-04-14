@@ -8,5 +8,11 @@ return [
     'phone' => 'Phone :',
     'email' => 'Email :',
     'like-us' => 'Like Us',
+    'send' => 'Send',
+    'comment' => 'Comment',
+    'delete-comment-successfully' => 'Comment delete succssfully',
+    'delete-comment-fail' => 'Comment delete fail',
+    'add-comment-successfully' => 'Comment add succssfully',
+    'add-comment-fail' => 'Comment add fail',
     'on-facebook' => 'On Facebook',
 ];

@@ -85,7 +85,7 @@
                 ]) !!}
             @if ($errors->has('quantity'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('quantity') }}</strong>
+                  <strong>{{ $errors->first('quantity') }}</strong>
                 </span>
             @endif
         </div>
