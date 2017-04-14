@@ -64,23 +64,23 @@
                     @foreach ($product as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $item->name }}</td>
+                    <td>{{ $item['name'] }}</td>
                     <td>
-                        {{ $item->category->name }}
+                        {{ $item['category']['name'] }}
                     </td>
-                    <td><span class = "more">{{ $item->description }}</span></td>
+                    <td><span class = "more">{{ $item['description'] }}</span></td>
                     <td>
-                        {{ HTML::image(config('app.image_path') . '/' . $item->image,
+                        {{ HTML::image(config('app.image_path') . '/' . $item['image'],
                             @trans('admin.this-is-image-product'),
                             [
                                 'class' => 'img_item',
                             ]) }}
                     </td>
-                    <td>{{ $item->quantity }}</td>
-                    <td>{{ $item->rate }}</td>
-                    <td>{{ $item->price }}</td>
-                    <td>{{ $item->sum_comment }}</td>
-                    <td>{{ $item->sum_rate }}</td>
+                    <td>{{ $item['quantity'] }}</td>
+                    <td>{{ $item['rate'] }}</td>
+                    <td>{{ $item['price'] }}</td>
+                    <td>{{ $item['sum_comment'] }}</td>
+                    <td>{{ $item['sum_rate'] }}</td>
                     <td>
                         @include('admin.products.status')
                     </td>

@@ -42,7 +42,8 @@
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="javascript:void(0);"><i class="fa fa-user fa-fw"></i>      @lang('admin.user-profile')
+                        <li><a href="javascript:void(0);"><i class="fa fa-user fa-fw"></i>
+                            {{ trans('admin.user-profile') }}
                             </a>
                         </li>
                         <li><a href="javascript:void(0);"><i class="fa fa-gear fa-fw"></i>

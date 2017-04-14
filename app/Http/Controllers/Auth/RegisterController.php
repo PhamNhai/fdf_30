@@ -73,8 +73,10 @@ class RegisterController extends Controller
             $user = $this->create($input);
             $this->guard()->login($user);
 
-            return $this->registered($request, $user)
-                ?: redirect($this->redirectPath());
+            return redirect()->route('frontend.product')->with([
+                'flash_level' => 'success',
+                'flash_message' => trans('frontend.register.success'),
+                ]);
         } catch (Exception $e) {
             return redirect()->route('login')->with([
                 'flash_message' => trans('admin.register-fail'),
