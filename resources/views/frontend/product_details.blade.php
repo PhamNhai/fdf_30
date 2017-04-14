@@ -9,11 +9,13 @@
 @endsection()
 
 @section('script')
-    {!! Html::script('//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js') !!}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     {!! Html::script('admin/tam/rate/js/star-rating.js') !!}
     {!! Html::script('admin/tam/rate/themes/krajee-svg/theme.js') !!}
     {!! Html::script('admin/tam/rate/js/locales/{lang}.js') !!}
     {!! Html::script('admin/tam/rate/rate.js') !!}
+    {!! Html::script('admin/js/myscript.js') !!}
 @endsection()
 @section('content')
 <div class="product-item-details">
@@ -33,29 +35,35 @@
                 {{ Html::image(config('app.image_path') . '/' . $product->image) }}
             </a>
         </div>
+        <div class="line fix-line"></div>
         @if (auth()->check())
-        {!! Form::open([
-        'method' => 'POST',
-        'action' => ['User\CommentController@store'],
-        ]) !!}
-        {!! Form::hidden('user_id', Auth::user()->id) !!}
-        {!! Form::hidden('product_id', $product["id"]) !!}
-        {!! Form::textarea('content', null, [
-            'class' => 'form-control fix-comment',
-            'id' => "comment",
-            'placeholder' => trans('frontend.type-comment'),
-            'cols' => '50',
-            'rows' => '3',
-        ]) !!}
-
-        {!! Form::button(trans('frontend.send'), [
-            'class' => 'btn btn-primary',
-            'type' => 'submit',
-        ]) !!}
-        {!! Form::close() !!}
+            <div>
+                <h4 class="text-primary">Please! Rate it:</h4>
+                {!! Form::open() !!}
+                    <div class="hide" data-route="{{ url('rate') }}"></div>
+                    {!! Form::text('rate', $userRateValue, [
+                        'id' => "input-2",
+                        'class' => 'rating rating-loading',
+                        'data-size' => "xs",
+                        'data-step' => "1",
+                    ]) !!}
+                    {!! Form::hidden('product_id', $product->id, [
+                        'id' => 'product-id',
+                    ]) !!}
+                    {!! Form::hidden('user_id', Auth::user()->id, [
+                        'id' => 'user_id',
+                    ]) !!}
+                {!! Form::close() !!}
+           </div>
         @endif
+        <div class="line fix-line"></div>
+        <a href="{!! url('/') !!}"
+            class="button button-small button-3d header-button">
+            {{ trans('frontend.back') }}
+        </a>
     </div>
     <div class="ifo-img">
+        <div class="text-success"><h3>{{ $product->name }}</h3></div>
         <div class="product-price"><ins>${{ $product->price }}</ins></div>
         <div class="line fix-line"></div>
         {!! Form::open([
@@ -112,33 +120,25 @@
                 </span>
             </div>
         </div>
-        <div class="line fix-line"></div>
-            <div class="feed-back">
-                @if (auth()->check())
-                    <div>
-                        {!! Form::open() !!}
-                            <div class="hide" data-route="{{ url('rate') }}"></div>
-                            {!! Form::text('rate', $userRateValue, [
-                                'id' => "input-2",
-                                'class' => 'rating rating-loading',
-                                'data-size' => "xs",
-                                'data-step' => "1",
-                            ]) !!}
-                            {!! Form::hidden('product_id', $product->id, [
-                                'id' => 'product-id',
-                            ]) !!}
-                            {!! Form::hidden('user_id', Auth::user()->id, [
-                                'id' => 'user_id',
-                            ]) !!}
-                        {!! Form::close() !!}
-                   </div>
-                @endif
-            </div>
-        <div class="line fix-line"></div>
-        <a href="{!! url('/') !!}"
-            class="button button-small button-3d header-button">
-            {{ trans('frontend.back') }}
-        </a>
+        @if (auth()->check())
+        {!! Form::open() !!}
+        <div class="urlcomment" data-route="{{ url('comment') }}"></div>
+        {!! Form::hidden('user_id', Auth::user()->id, [
+            'id' => 'user_id',
+        ]) !!}
+        {!! Form::hidden('product_id', $product["id"], [
+            'id' => 'product_id',
+        ]) !!}
+        {!! Form::textarea('content', null, [
+            'class' => 'form-control fix-comment',
+            'id' => "comment1",
+            'placeholder' => trans('frontend.type-comment'),
+            'cols' => '50',
+            'rows' => '3',
+        ]) !!}
+        {!! Form::close() !!}
+        @endif
+
         <div class="line fix-line"></div>
         @include('user.comment.comment')
     </div>

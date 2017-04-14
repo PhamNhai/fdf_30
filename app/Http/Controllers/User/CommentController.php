@@ -36,14 +36,29 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        $input = Comment::createComment($request);
-        if ($input) {
-            return redirect()->back()
-                ->with('success', trans('frontend.add-comment-successfully'));
-        } else {
-            return redirect()->back()
-                ->with('errors', trans('frontend.add-comment-fail'));
+        if ($request->ajax()) {
+            $input = $request->only('user_id', 'product_id', 'content');
+            try {
+            $comment = Comment::create($input);
+            $result = [
+                'success' => true,
+                'content' => $input['content'],
+                'user' => auth()->user()->name,
+                'created_at' => $comment->created_at->diffForHumans(),
+                'avatarPath' => isset(auth()->user()->avatar) ? auth()->user()->getAvatarPath() : asset(config('app.avatar_default_path')),
+                'commentId' => $comment->id,
+                'deleteUrl' => route('comment.delete', $comment->id),
+            ];
+            } catch (Exception $e) {
+                $result = [
+                    'success' => false,
+                    'message' => trans('label.comment_fail'),
+                ];
+                return response()->json($result);
+            }
+            return response()->json($result);
         }
+        return redirect()->back();
     }
 
     /**
@@ -65,7 +80,7 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
@@ -97,5 +112,34 @@ class CommentController extends Controller
             return redirect()->back()
                 ->with('errors', trans('frontend.delete-comment-fail'));
         }
+    }
+
+    public function updateComment(Request $request)
+    {
+        if ($request->ajax()) {
+            $input = $request->only('id', 'content');
+            try {
+            $comment = Comment::findOrFail($input['id']);
+            $comment->content = $input['content'];
+            $comment->save();
+            $result = [
+                'success' => true,
+                'content' => $comment->content,
+                'user' => auth()->user()->name,
+                'created_at' => $comment->created_at->diffForHumans(),
+                'avatarPath' => isset(auth()->user()->avatar) ? auth()->user()->getAvatarPath() : asset(config('app.avatar_default_path')),
+                'commentId' => $comment->id,
+                'deleteUrl' => route('comment.delete', $comment->id),
+            ];
+            } catch (Exception $e) {
+                $result = [
+                    'success' => false,
+                    'message' => trans('label.edit_comment_fail'),
+                ];
+                return response()->json($result);
+            }
+            return response()->json($result);
+        }
+        return redirect()->back();
     }
 }

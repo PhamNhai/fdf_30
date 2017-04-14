@@ -62,7 +62,12 @@
                 <div class="product-title"><h3><a href="#">{{ $item->name }}</a></h3></div>
                 <div class="product-price"><ins>${{ $item->price }}</ins></div>
                 <div class="product-rating">
-                    #####
+                    {!! Form::open() !!}
+                    {!! Form::text('input', $item->rate, [
+                        'class' => 'input-3 rating-loading',
+                        'data-size' => "xs",
+                    ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -112,7 +117,12 @@
                 <div class="product-title"><h3><a href="#">{{ $item->name }}</a></h3></div>
                 <div class="product-price"><ins>${{ $item->price }}</ins></div>
                 <div class="product-rating">
-                    #####
+                    {!! Form::open() !!}
+                    {!! Form::text('input', $item->rate, [
+                        'class' => 'input-3 rating-loading',
+                        'data-size' => "xs",
+                    ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -161,7 +171,12 @@
                 <div class="product-title"><h3><a href="#">{{ $item->name }}</a></h3></div>
                 <div class="product-price"><ins>${{ $item->price }}</ins></div>
                 <div class="product-rating">
-                    #####
+                    {!! Form::open() !!}
+                    {!! Form::text('input', $item->rate, [
+                        'class' => 'input-3 rating-loading',
+                        'data-size' => "xs",
+                    ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -209,7 +224,12 @@
                 <div class="product-title"><h3><a href="#">{{ $item->name }}</a></h3></div>
                 <div class="product-price"><ins>${{ $item->price }}</ins></div>
                 <div class="product-rating">
-                    #####
+                    {!! Form::open() !!}
+                    {!! Form::text('input', $item->rate, [
+                        'class' => 'input-3 rating-loading',
+                        'data-size' => "xs",
+                    ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -259,7 +279,12 @@
                 <div class="product-title"><h3><a href="#">{{ $item->name }}</a></h3></div>
                 <div class="product-price"><ins>${{ $item->price }}</ins></div>
                 <div class="product-rating">
-                    #####
+                    {!! Form::open() !!}
+                    {!! Form::text('input', $item->rate, [
+                        'class' => 'input-3 rating-loading',
+                        'data-size' => "xs",
+                    ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -307,7 +332,12 @@
                 <div class="product-title"><h3><a href="#">{{ $item->name }}</a></h3></div>
                 <div class="product-price"><ins>${{ $item->price }}</ins></div>
                 <div class="product-rating">
-                    #####
+                    {!! Form::open() !!}
+                    {!! Form::text('input', $item->rate, [
+                        'class' => 'input-3 rating-loading',
+                        'data-size' => "xs",
+                    ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
@@ -335,7 +365,12 @@
                 <div class="product-title"><h3><a href="#">{{ $item->name }}</a></h3></div>
                 <div class="product-price"><ins>${{ $item->price }}</ins></div>
                 <div class="product-rating">
-                    #####
+                    {!! Form::open() !!}
+                    {!! Form::text('input', $item->rate, [
+                        'class' => 'input-3 rating-loading',
+                        'data-size' => "xs",
+                    ]) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

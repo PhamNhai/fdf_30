@@ -98,4 +98,9 @@ class User extends Authenticatable
         }
         $user->save();
     }
+
+    public function getAvatarPath()
+    {
+        return asset($this->avatar);
+    }
 }

@@ -78,9 +78,8 @@ class RegisterController extends Controller
                 'flash_message' => trans('frontend.register.success'),
                 ]);
         } catch (Exception $e) {
-            return redirect()->route('login')->with([
-                'flash_message' => trans('admin.register-fail'),
-            ]);
+            return redirect()->route('login')
+                ->with('errors', trans('category.create-category-fail'));
         }
     }
 }

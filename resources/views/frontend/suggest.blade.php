@@ -5,7 +5,7 @@
     'method' => 'POST'
 ]) !!}
 <div class="col_full">
-    <textarea class="fix-suggest" name="suggest" cols="50" rows="10"
+    <textarea class="fix-suggest" name="suggest"
         placeholder=" {{ trans('frontend.type-suggest') }} "></textarea>
 </div>
 {!! Form::hidden('id_user', Auth::id()) !!}

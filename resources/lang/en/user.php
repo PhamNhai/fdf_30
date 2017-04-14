@@ -28,6 +28,7 @@ return [
     'add-user-successfully' => 'User add successfully',
     'add-user-fail' => 'User add fail',
     'profile' => 'Profile',
+    'set-admin' => 'Set admin',
     'edit-profile' => 'Edit Profile',
 
 ];

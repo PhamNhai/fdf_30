@@ -46,10 +46,18 @@
                         <i class="fa fa-envelope"></i>
                         <span class="text-primary">{{ $user->email }}</span>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <i class="fa fa fa-phone"></i>
                         <span class="text-primary">{{ $user->phone }}</span>
                     </div>
+                    @if ($user->role == 'user')
+                        <div class="col-lg-2">
+                            <a href="{{ action('Admin\UserController@setAdmin', $user->id) }}"
+                            class="btn btn-block btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i>{{ trans('user.set-admin') }}</a>
+                        </div>
+                    @else
+                        <div class="col-lg-2"></div>
+                    @endif
                     <div class="col-lg-2">
                         <a href="{{ action('Admin\UserController@edit', $user->id) }}"
                         class="btn btn-block btn-primary btn-xs"><i class="glyphicon glyphicon-edit"></i>{{ trans('user.edit') }}</a>

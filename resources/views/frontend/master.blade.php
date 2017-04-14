@@ -87,7 +87,7 @@
                             @if (Auth::check())
                             <li><a href="#"><div class="name-user">{{ ucwords(Auth::user()->name) }}</div></a>
                                 <ul>
-                                    <li><a href="#">
+                                    <li><a href="{{ action('User\UserController@index') }}">
                                             <div><i class="fa fa-user fa-fw" aria-hidden="true"></i>
                                                {{ trans('admin.user-profile') }}
                                             </div>
@@ -117,7 +117,9 @@
                             @else
                             <li><a href="{{ url('login') }}"><div>{{ trans('frontend.login') }}</div></a>
                             @endif
+                            @if (Auth::check() && Auth::user()->role == config('app.ad'))
                             <li><a href="{{ url('admin/home') }}"><div>{{ trans('frontend.admin') }}</div></a>
+                            @endif
                         </ul>
                         <div id="top-cart">
                             <a href="{{ route('cart') }}">
@@ -215,6 +217,7 @@
     {!! Html::script('frontend/js/bootstrap.min.js') !!}
     {!! Html::script('frontend/js/functions.js') !!}
     {!! Html::script('frontend/js/myscript.js') !!}
+    {!! Html::script('admin/js/myscript.js') !!}
     @yield('script')
 
 </body>
