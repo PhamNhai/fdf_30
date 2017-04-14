@@ -113,4 +113,18 @@ class UserController extends Controller
                 ->with('errors', trans('delete.add-user-fail'));
         }
     }
+
+    public function setAdmin($id)
+    {
+        $user = User::findOrFail($id);
+        $user->role = config('app.ad');
+        $user->save();
+        if ($user) {
+            return redirect()->back()
+                ->with('success', trans('user.update-user-successfully'));
+        } else {
+            return redirect()->back()
+                ->with('errors', trans('update.add-user-fail'));
+        }
+    }
 }

@@ -21,6 +21,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['check.auth', 'check.admin']
     Route::resource('order', 'Admin\OrderController');
     Route::resource('user', 'Admin\UserController');
     Route::resource('suggest', 'Admin\SuggestController');
+    Route::get('user/set-admin/{userId}', [
+        'as' => 'user.set-admin',
+        'uses' => 'Admin\UserController@setAdmin',
+    ]);
     Route::get('/update-status/{userId}', [
         'as' => 'product.status',
         'uses' => 'Admin\ProductController@updateStatus'
@@ -37,11 +41,12 @@ Route::group(['middleware' => 'check.auth'], function () {
     App::setLocale('vn');
     Route::resource('profile', 'User\UserController');
     Route::resource('comment', 'User\CommentController');
+    Route::resource('rate', 'RateController', [
+        'only' => ['store']
+    ]);
 });
 
-Route::resource('rate', 'RateController', [
-    'only' => ['store']
-]);
+
 
 Route::get('product-deltais/{id}', [
     'as' => 'frontend.product-deltais',

@@ -38,8 +38,13 @@
         'method' => 'POST',
         'action' => ['User\CommentController@store'],
         ]) !!}
-        {!! Form::hidden('user_id', Auth::user()->id) !!}
-        {!! Form::hidden('product_id', $product["id"]) !!}
+        <div class="urlcomment" data-route="{{ url('comment') }}"></div>
+        {!! Form::hidden('user_id', Auth::user()->id, [
+            'id' => 'user_id',
+        ]) !!}
+        {!! Form::hidden('product_id', $product["id"], [
+            'id' => 'product_id',
+        ]) !!}
         {!! Form::textarea('content', null, [
             'class' => 'form-control fix-comment',
             'id' => "comment",
