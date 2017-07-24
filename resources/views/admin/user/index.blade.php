@@ -7,14 +7,7 @@
     <div class="row bootstrap snippets">
         <div class="col-md-9 col-sm-7">
             <h2>{{ trans('user.list-user') }}</h2>
-        </div>
-        <div class="col-md-3 col-sm-5">
-            <form method="get" role="form" class="search-form-full">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="s" id="search-input" placeholder="Search...">
-                    <i class="entypo-search"></i>
-                </div>
-            </form>
+
         </div>
     </div>
     @if (Session::has('errors'))

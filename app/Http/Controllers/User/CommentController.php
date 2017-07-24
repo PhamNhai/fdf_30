@@ -117,7 +117,7 @@ class CommentController extends Controller
     public function updateComment(Request $request)
     {
         if ($request->ajax()) {
-            $input = $request->only('id', 'content');
+            $input = $request->only('id');
             try {
             $comment = Comment::findOrFail($input['id']);
             $comment->content = $input['content'];

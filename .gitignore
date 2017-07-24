@@ -7,7 +7,7 @@
 Homestead.json
 Homestead.yaml
 .env
-/public/admin
+/public/admin/bower_components
 /public/img
 /public/frontend
 /public/icon

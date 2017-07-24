@@ -1,0 +1,46 @@
+.pagination>li>a, .pagination>li>span {
+    border-radius: 50% !important;
+    margin: 0 5px;
+}
+
+.box-footer {
+    text-align: center;
+}
+element.style {
+    min-height: 432px;
+}
+.fixtable th:nth-child(1) {
+    width: 10px;
+}
+.fixtable th:nth-child(5) {
+    width: 40px;
+}
+.additem>a {
+    width: 125px;
+}
+.fix-form-search-item {
+    width: 250px;
+}
+.form-item {
+    padding-bottom:120px;
+    margin-left: 140px;
+}
+.img_item {
+    height: 100px;
+    width: 100px;
+}
+.box-body {
+    text-align: center;
+}
+th {
+    text-align: center;
+}
+
+table.table-bordered tbody th, table.table-bordered tbody td {
+    vertical-align: middle;
+}
+.fixform {
+    margin-top: 10px;
+}
+
+
